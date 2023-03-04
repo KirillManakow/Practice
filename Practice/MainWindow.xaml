@@ -10,22 +10,6 @@
         <Frame NavigationUIVisibility="Hidden"
                Name="MainFrame"></Frame>
 
-        <Image
-               Height="52" Margin="1132,6,0,0" 
-               VerticalAlignment="Top" 
-               Source="/Exit.png" 
-               MouseLeftButtonDown="Exit"
-               Cursor="Hand" HorizontalAlignment="Left" Width="52" RenderTransformOrigin="0.5,0.5" Stretch="Uniform" StretchDirection="Both">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-6.689"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-3.05"/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-
         <TextBox x:Name="Time"
                  Text="{Binding TickCounter,
                  RelativeSource={RelativeSource FindAncestor,
@@ -53,6 +37,11 @@
                IsEnabled="False"
                BorderBrush="{x:Null}" 
                Background="{x:Null}"/>
+        <Image 
+            Source="/Exit.png" 
+            Margin="1145,-1,1,625" 
+            MouseLeftButtonDown="Exit"
+            Cursor="Hand"/>
 
     </Grid>
 </Window>

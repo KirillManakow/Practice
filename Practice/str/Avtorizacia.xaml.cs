@@ -34,7 +34,9 @@ namespace Practice.Straniza
         List<Practice.history> history_enter = new List<Practice.history> {new history()};
         private void Entre_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-           
+            Capcha capcha = new Capcha();
+            capcha.Show();
+
             string user = login.Text;
             string pas = password.Password;
             int count = Entities1.GetContext().users.Count();
