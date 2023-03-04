@@ -47,15 +47,15 @@ namespace Practice.Straniza
                         {
                             if (pas == pas1)
                             {
-                                List<Practice.users> user = new List<Practice.users>() { new users() };
-                                int count = Entities1.GetContext().users.Count();
+                                List<Practice.Base.users> user = new List<Practice.Base.users>() { new Base.users() };
+                                int count = Base.Entities1.GetContext().users.Count();
                                 user[0].id = count + 1;
                                 user[0].login = log;
                                 user[0].ip = Dns.GetHostName();
                                 user[0].password = pas;
                                 user[0].name = names;
-                                Entities1.GetContext().users.Add(user[0]);
-                                Entities1.GetContext().SaveChanges();
+                                Base.Entities1.GetContext().users.Add(user[0]);
+                                Base.Entities1.GetContext().SaveChanges();
                                 frame1.Navigate(new Avtorizacia(frame1));
                             }
                             else

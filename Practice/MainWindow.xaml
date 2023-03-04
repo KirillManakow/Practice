@@ -9,39 +9,14 @@
     <Grid>
         <Frame NavigationUIVisibility="Hidden"
                Name="MainFrame"></Frame>
-
-        <TextBox x:Name="Time"
-                 Text="{Binding TickCounter,
-                 RelativeSource={RelativeSource FindAncestor,
-                 AncestorType={x:Type local:MainWindow}}}" 
-                 HorizontalAlignment="Left" 
-                 Margin="234,16,0,0" 
-                 TextWrapping="Wrap" 
-                 VerticalAlignment="Top" 
-                 Height="40" Width="58"
-                 FontSize="22"
-                 Foreground="Black"
-                 TextChanged="TextBox_TextChanged"
-                 IsEnabled="False" 
-                 BorderBrush="{x:Null}"
-                 Background="{x:Null}" 
-                 SelectionBrush="{x:Null}"/>
-
-        <Label Content="Мин до кварцевания"
-               Margin="10,11,0,0" HorizontalAlignment="Left"  
-               VerticalAlignment="Top"
-               Height="40"
-               Width="250" 
-               FontSize="22"
-               Foreground="Black"
-               IsEnabled="False"
-               BorderBrush="{x:Null}" 
-               Background="{x:Null}"/>
-        <Image 
-            Source="/Exit.png" 
-            Margin="1145,-1,1,625" 
-            MouseLeftButtonDown="Exit"
-            Cursor="Hand"/>
+        <Image HorizontalAlignment="Left" 
+               Height="61"
+               Margin="1126,0,0,0" 
+               VerticalAlignment="Top" 
+               Width="61"
+               Source="/exit.png" 
+               MouseLeftButtonDown="Exit"
+               Cursor="Hand"/>
 
     </Grid>
 </Window>

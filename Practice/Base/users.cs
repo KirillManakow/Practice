@@ -7,17 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Practice
+namespace Practice.Base
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.Results = new HashSet<Results>();
+        }
+    
+        public int id { get; set; }
         public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string login { get; set; }
+        public string password { get; set; }
+        public string ip { get; set; }
+        public Nullable<System.DateTime> lastenter { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Results> Results { get; set; }
     }
 }

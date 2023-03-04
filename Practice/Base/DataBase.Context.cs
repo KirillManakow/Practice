@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Practice
+namespace Practice.Base
 {
     using System;
     using System.Data.Entity;
@@ -15,12 +15,12 @@ namespace Practice
     
     public partial class Entities1 : DbContext
     {
-        
+        private static Entities1 _instance;
         public Entities1()
             : base("name=Entities1")
         {
+
         }
-        private static Entities1 _instance;
         public static Entities1 GetContext()
         {
             if (_instance == null) _instance = new Entities1();

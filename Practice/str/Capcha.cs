@@ -65,8 +65,8 @@ namespace Practice
             return result;
         }
 
-      
 
+        public int pr = 0;
         private void button1_Click_1(object sender, EventArgs e)
         {
             pictureBox1.Image = this.CreateImage(pictureBox1.Width, pictureBox1.Height);
@@ -76,7 +76,7 @@ namespace Practice
         {
             if (textBox1.Text == this.text)
             {
-                MessageBox.Show("Верно!");
+                pr++;
                 this.Close();
             }       
             else

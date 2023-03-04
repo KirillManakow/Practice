@@ -144,8 +144,7 @@
                  Height="40"
                  Margin="382,138,382,522" 
                  FontFamily="Comic Sans MS" 
-                 FontSize="24" Width="436"
-                
+                 FontSize="24" Width="436"              
                  />
         <PasswordBox Style="{DynamicResource PasswordBoxStyle1}" 
                  x:Name="password"
@@ -153,7 +152,14 @@
                  Margin="382,299,382,361"
                  FontFamily="Comic Sans MS" 
                  FontSize="24" Width="436" PasswordChar="*"
-                   />
+                  />
+        <TextBox Style="{DynamicResource TextBoxStyle1}" 
+            x:Name="password1"
+            Height="40"
+            Margin="382,299,382,361"
+            FontFamily="Comic Sans MS" 
+            FontSize="24" Width="436"
+                  />
 
         <TextBlock x:Name="Entre"
                    Text="Вход" 
@@ -168,6 +174,9 @@
                    FontFamily="Bahnschrift"
                    Cursor="Hand" MouseLeftButtonDown="Entre_MouseLeftButtonDown"
                    />
-   
+        <Image x:Name="glas" HorizontalAlignment="Left" Height="42" Margin="756,299,0,0" VerticalAlignment="Top" Width="66" Source="/str/show_pass.png" Stretch="Fill" MouseLeftButtonDown="glas_MouseLeftButtonDown"/>
+        <Image x:Name="glas_show" HorizontalAlignment="Left" Height="42" Margin="756,299,0,0" VerticalAlignment="Top" Width="66" Source="/str/hide_pass.png" Stretch="Fill" MouseLeftButtonDown="glas_show_MouseLeftButtonDown"/>
+
+
     </Grid>
 </Page>

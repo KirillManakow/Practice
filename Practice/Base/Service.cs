@@ -7,25 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Practice
+namespace Practice.Base
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
+        public Service()
         {
             this.Results = new HashSet<Results>();
         }
     
         public int id { get; set; }
-        public string name { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public string ip { get; set; }
-        public Nullable<System.DateTime> lastenter { get; set; }
+        public string Service1 { get; set; }
+        public Nullable<double> Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Results> Results { get; set; }
