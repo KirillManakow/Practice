@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Strelki.cs" />
     <Compile Include="str\Capcha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +100,8 @@
     <Compile Include="str\Avtorizacia.xaml.cs">
       <DependentUpon>Avtorizacia.xaml</DependentUpon>
     </Compile>
-    <Compile Include="str\Glavn.xaml.cs">
-      <DependentUpon>Glavn.xaml</DependentUpon>
+    <Compile Include="str\glavn.xaml.cs">
+      <DependentUpon>glavn.xaml</DependentUpon>
     </Compile>
     <Compile Include="str\Registr.xaml.cs">
       <DependentUpon>Registr.xaml</DependentUpon>
@@ -130,9 +131,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="str\Glavn.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="str\glavn.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="str\Registr.xaml">
       <SubType>Designer</SubType>

@@ -26,9 +26,6 @@ namespace Practice
             InitializeComponent();
             MainFrame.Navigate(new Straniza.Avtorizacia(MainFrame));     
         }       
-        private void Exit(object sender, MouseButtonEventArgs e)
-        {
-            Environment.Exit(0);
-        }
+     
     }
 }

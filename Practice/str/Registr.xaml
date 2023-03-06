@@ -100,7 +100,37 @@
     </Page.Resources>
 
     <Grid Width="1200" Height="700">
-         
+        <TextBox Style="{DynamicResource ResourceKey=TextBoxStyle1}"
+                 HorizontalAlignment="Center" 
+                 Margin="0,19,0,0" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Width="550"
+                 Background="{x:Null}"
+                 Height="599"
+                 BorderThickness="10" 
+                 BorderBrush="Black" Foreground="{x:Null}" IsEnabled="False"
+                 />
+        <TextBox Style="{DynamicResource ResourceKey=TextBoxStyle1}"                
+            HorizontalAlignment="Center" 
+            Margin="0,24,0,0" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top"
+            Width="542"
+            Height="590"
+            BorderThickness="5" 
+            BorderBrush="{x:Null}"
+            Background="#FF89A2DA" IsEnabled="False" RenderTransformOrigin="0.5,0.5"
+                 >
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.144"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.664"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
         <Label  Content="Name"
             HorizontalAlignment="Center" 
             Margin="0,24,0,0" 
@@ -114,7 +144,7 @@
             Margin="382,84,382,576" 
             FontFamily="Comic Sans MS" 
             FontSize="24"/>
-        
+
         <Label  Content="Login"
             HorizontalAlignment="Center" 
             Margin="0,140,0,0" 
@@ -128,8 +158,8 @@
             Margin="382,206,382,454" 
             FontFamily="Comic Sans MS" 
             FontSize="24"/>
-     
-        
+
+
         <Label  Content="Password"
             HorizontalAlignment="Center" 
             Margin="0,265,0,0" 
@@ -143,7 +173,7 @@
             Margin="382,319,382,341" 
             FontFamily="Comic Sans MS" 
             FontSize="24"/>
-        
+
         <Label  Content="Repeat Password"
             HorizontalAlignment="Center" 
             Margin="0,384,0,0" 
@@ -173,7 +203,7 @@
             FontSize="50" Margin="322,515,0,126" 
             FontFamily="Monotype Corsiva"
             Cursor="Hand" MouseLeftButtonDown="registration_MouseLeftButtonDown"/>
-        
+
         <TextBlock x:Name="Entre_Copy"
             Text="Отмена" 
             TextDecorations="Underline" 
