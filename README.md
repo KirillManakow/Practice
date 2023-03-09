@@ -16,3 +16,13 @@
 ![image](https://user-images.githubusercontent.com/105341960/222233978-5cb8b142-14fe-4ef0-8768-61daee95e263.png)
 ![image](https://user-images.githubusercontent.com/105341960/222234019-a0ce18c9-9b14-4e6b-b8b3-cc4a6e880f61.png)
 
+# День 2
+Первое что нас встречает в приложении это авторизация.
+![image](https://user-images.githubusercontent.com/105341960/223930982-6f47fba3-2b24-4aa7-813d-ce2be317b19f.png)
+![image](https://user-images.githubusercontent.com/105341960/223931003-916051d1-b0a2-4361-84f3-70ae4db53d20.png)
+
+Так же если у пользователя закончился таймер и наступает блокировка системы на 30 минут.
+![image](https://user-images.githubusercontent.com/105341960/223931182-447a185e-9fec-474f-bcf6-39910d8b5f6b.png)
+
+После авторизации нас встречает главная страница выглядящая следующим образом.
+![image](https://user-images.githubusercontent.com/105341960/223931319-f108cf20-fbef-4cc4-8b05-e338f0d4e804.png)
