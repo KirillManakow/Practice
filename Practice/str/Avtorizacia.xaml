@@ -116,7 +116,7 @@
 
         <TextBox Style="{DynamicResource ResourceKey=TextBoxStyle1}"                
             HorizontalAlignment="Center" 
-            Margin="0,24,0,0" 
+            Margin="0,18,0,0" 
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             Width="542"
