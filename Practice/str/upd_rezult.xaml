@@ -45,7 +45,7 @@
             x:Name="Result_Upd" 
             Height="60" 
             Margin="550,350,0,0" 
-            FontSize="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" />
+            FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" />
         <Label Content="Лаборант:" 
             FontSize="40"
             Height="60"
@@ -84,10 +84,10 @@
             FontSize="50" Margin="704,571,0,0" 
             FontFamily="Bahnschrift" 
             Cursor="Hand" MouseLeftButtonDown="Delete_R_MouseLeftButtonDown" Height="66" VerticalAlignment="Top"/>
-        <DatePicker Name="Date_Upd" HorizontalAlignment="Left" Margin="544,439,0,0" FontSize="35" Foreground="Red" VerticalAlignment="Top" Height="60" Width="516"/>
-        <ComboBox Name="Patient_Upd" HorizontalAlignment="Left" Margin="550,68,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
-        <ComboBox x:Name="Laborant_Upd" HorizontalAlignment="Left" Margin="550,162,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
-        <ComboBox x:Name="Service_Upd" HorizontalAlignment="Left" Margin="550,262,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="Service1"/>
+        <DatePicker Name="Date_Upd" HorizontalAlignment="Left" Margin="544,439,0,0" FontSize="35" Foreground="Red" VerticalAlignment="Top" Height="60" Width="516" BorderBrush="{x:Null}"/>
+        <ComboBox Name="Patient_Upd" HorizontalAlignment="Left" FontSize="35" Margin="550,68,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
+        <ComboBox x:Name="Laborant_Upd" HorizontalAlignment="Left" FontSize="35"  Margin="550,162,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
+        <ComboBox x:Name="Service_Upd" HorizontalAlignment="Left" FontSize="35"  Margin="550,262,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="Service1"/>
         <TextBlock x:Name="back"
             Text="Назад" 
             TextDecorations="Underline" 
@@ -97,9 +97,9 @@
             Width="140"
             FontWeight="Bold" 
             Foreground="White"
-            FontSize="35" Margin="1060,10,0,651" 
+            FontSize="35" Margin="1050,10,0,0" 
             FontFamily="Bahnschrift" 
-            Cursor="Hand" MouseLeftButtonDown="back_upd_rezult"/>
+            Cursor="Hand" MouseLeftButtonDown="back_upd_rezult" Height="39" VerticalAlignment="Top"/>
     </Grid>
 
 </Page>

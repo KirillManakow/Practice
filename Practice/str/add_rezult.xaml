@@ -131,7 +131,7 @@
             x:Name="Result_ADD" 
             Height="60" 
             Margin="480,353,0,0" 
-            FontSize="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" />
+            FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" />
         <Label Content="Лаборант:" 
             FontSize="40"
             Height="60"
@@ -155,9 +155,9 @@
 
         <DatePicker Name="Date_Add" Margin="480,449,210,0" VerticalAlignment="Top" FontSize="35" Foreground="Red" Height="60" BorderBrush="{x:Null}"/>
 
-        <ComboBox Name="Patient_ADD" Margin="480,71,0,0" DisplayMemberPath="name" FontSize="30" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481"/>
-        <ComboBox x:Name="Laborant_ADD" Margin="480,165,0,0" VerticalAlignment="Top" FontSize="30" Height="60" DisplayMemberPath="name" HorizontalAlignment="Left" Width="481"/>
-        <ComboBox x:Name="Service_ADD" Margin="480,265,0,0" VerticalAlignment="Top" FontSize="30" Height="60" DisplayMemberPath="Service1" HorizontalAlignment="Left" Width="481"/>
+        <ComboBox Name="Patient_ADD" Margin="480,71,0,0" DisplayMemberPath="name" FontSize="35" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481"/>
+        <ComboBox x:Name="Laborant_ADD" Margin="480,165,0,0" VerticalAlignment="Top" FontSize="35" Height="60" DisplayMemberPath="name" HorizontalAlignment="Left" Width="481"/>
+        <ComboBox x:Name="Service_ADD" Margin="480,265,0,0" VerticalAlignment="Top" FontSize="35" Height="60" DisplayMemberPath="Service1" HorizontalAlignment="Left" Width="481"/>
         <TextBlock x:Name="back"
             Text="Назад" 
             TextDecorations="Underline" 
