@@ -84,7 +84,7 @@
             FontSize="50" Margin="704,571,0,0" 
             FontFamily="Bahnschrift" 
             Cursor="Hand" MouseLeftButtonDown="Delete_R_MouseLeftButtonDown" Height="66" VerticalAlignment="Top"/>
-        <DatePicker Name="Date_Upd" HorizontalAlignment="Left" Margin="544,439,0,0" VerticalAlignment="Top" Height="60" Width="487"/>
+        <DatePicker Name="Date_Upd" HorizontalAlignment="Left" Margin="544,439,0,0" FontSize="35" Foreground="Red" VerticalAlignment="Top" Height="60" Width="516"/>
         <ComboBox Name="Patient_Upd" HorizontalAlignment="Left" Margin="550,68,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
         <ComboBox x:Name="Laborant_Upd" HorizontalAlignment="Left" Margin="550,162,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="name"/>
         <ComboBox x:Name="Service_Upd" HorizontalAlignment="Left" Margin="550,262,0,0" VerticalAlignment="Top" Width="481" Height="60" DisplayMemberPath="Service1"/>

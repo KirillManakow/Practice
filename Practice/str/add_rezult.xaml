@@ -126,7 +126,7 @@
                    FontSize="50" Margin="0,565,0,0" 
                    FontFamily="Bahnschrift" 
                    Cursor="Hand" MouseLeftButtonDown="AddR_MouseLeftButtonDown" Height="66" VerticalAlignment="Top"/>
-        
+
         <TextBox Style="{DynamicResource TextBoxStyle1}" 
             x:Name="Result_ADD" 
             Height="60" 
@@ -153,11 +153,7 @@
             Foreground="White" 
             FontFamily="Bahnschrift" VerticalAlignment="Top" HorizontalAlignment="Left" Width="272"/>
 
-        <DatePicker Name="Date_Add" Margin="480,464,239,0" VerticalAlignment="Top" Height="30" BorderBrush="{x:Null}">
-            <DatePicker.Effect>
-                <DropShadowEffect/>
-            </DatePicker.Effect>
-        </DatePicker>
+        <DatePicker Name="Date_Add" Margin="480,449,210,0" VerticalAlignment="Top" FontSize="35" Foreground="Red" Height="60" BorderBrush="{x:Null}"/>
 
         <ComboBox Name="Patient_ADD" Margin="480,71,0,0" DisplayMemberPath="name" FontSize="30" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481"/>
         <ComboBox x:Name="Laborant_ADD" Margin="480,165,0,0" VerticalAlignment="Top" FontSize="30" Height="60" DisplayMemberPath="name" HorizontalAlignment="Left" Width="481"/>
