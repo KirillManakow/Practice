@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Up
+namespace Practice
 {
     class Strelki : INotifyPropertyChanged // класс, который наследуется от интерфейса INotifyPropertyChanged
     {

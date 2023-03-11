@@ -13,7 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Up;
+using Practice.Base;
+using Practice;
+using Practice.Straniza;
+using Practice.str;
 
 namespace Practice.Straniza
 {
@@ -34,29 +37,33 @@ namespace Practice.Straniza
     List<Practice.Base.Service> services = new List<Practice.Base.Service>();
     List<Practice.Base.Results> result = new List<Practice.Base.Results>();
     List<Practice.Base.Workers> workers = new List<Practice.Base.Workers>();
+        public int rol = 0;
         public Glavn(string User, Frame frame)
     {
             InitializeComponent();
             frame1 = frame;
             user = User;
+            LViewresult.Visibility = Visibility.Collapsed;
+            Servis.Visibility = Visibility.Collapsed;
             Add.Visibility = Visibility.Collapsed;
             history.Visibility = Visibility.Collapsed;
-            workers = Practice.Base.Entities1.GetContext().Workers.ToList();
+            workers = Entities1.GetContext().Workers.ToList();
             for (int i = 0; i < workers.Count; i++)
             {
                 if (workers[i].login == user && workers[i].dolgnost == "Администратор")
                 {
                     history.Visibility = Visibility.Visible;
                     Add.Visibility = Visibility.Visible;
+                    rol = 1;
                 }
                 if (workers[i].login == user && workers[i].dolgnost == "Лаборант")
                 {
-                    result = Practice.Base.Entities1.GetContext().Results.ToList();
-
+                    Add.Visibility = Visibility.Visible;
+                    rol = 2;
                 }
             }
-            int count_hh = Practice.Base.Entities1.GetContext().history.Count();
-            historys = Practice.Base.Entities1.GetContext().history.ToList();
+            int count_hh = Entities1.GetContext().history.Count();
+            historys = Entities1.GetContext().history.ToList();
             int time = 0;
             for (int j = count_hh - 1; j >= 0; j--)
             {
@@ -77,8 +84,8 @@ namespace Practice.Straniza
             _timer.Interval = TimeSpan.FromMinutes(1d);
             _timer.Tick += new EventHandler(Timer_Tick);
             _timer.Start();
-            int count = Practice.Base.Entities1.GetContext().Service.Count();
-            services = Practice.Base.Entities1.GetContext().Service.ToList();
+            int count = Entities1.GetContext().Service.Count();
+            services = Entities1.GetContext().Service.ToList();
             sp.CountPage = 3;
             sp.Countlist = count;
             LViewTours.ItemsSource = services.Skip(0).Take(sp.CountPage).ToList();
@@ -90,66 +97,117 @@ namespace Practice.Straniza
         Strelki sp = new Strelki();
         private void Update()
         {
-            var currentProducts = Practice.Base.Entities1.GetContext().Service.ToList();
+            var currentProducts = Entities1.GetContext().Service.ToList();
             currentProducts = currentProducts.Where(p => p.Service1.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             sp.CountPage = 3;
             sp.Countlist = currentProducts.Count;
             LViewTours.ItemsSource = currentProducts.Skip(0).Take(sp.CountPage).ToList();
+            var currentResult = Entities1.GetContext().Results.ToList();
+
+            for (int i = 0; i < currentResult.Count; i++)
+            {
+                if (currentResult[i].Workers.login != user && currentResult[i].users.login != user)
+                {
+                    currentResult.RemoveAt(i);
+                    i--;
+                }
+            }
+            if (rol != 2)
+            {
+                currentResult = currentResult.Where(p => p.Workers.name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            }
+            else
+            {
+                currentResult = currentResult.Where(p => p.users.name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            }
+            LViewresult.ItemsSource = currentResult.ToList();
         }
 
-        private void kolvo_zapice(int kol)
-        {
-            try
-            {
-                sp.CountPage = Convert.ToInt32(kol); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
-            }
-            catch
-            {
-                sp.CountPage = services.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
-            }
-            sp.Countlist = services.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
-            LViewTours.ItemsSource = services.Skip(0).Take(sp.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
-            sp.CurrentPage = 1; // текущая страница - это страница 1
-        }
+
 
         private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            TextBlock tb = (TextBlock)sender;
-
-            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            if (LViewTours.Visibility == Visibility.Visible)
             {
-                case "prev":
-                    sp.CurrentPage--;
-                    break;
-                case "next":
-                    sp.CurrentPage++;
-                    break;
-                case "prev1":
-                    sp.CurrentPage = 1;
-                    break;
-                case "next1":
-                    {
-                        List<Practice.Base.Service> fl = Practice.Base.Entities1.GetContext().Service.ToList();
-                        int a = fl.Count;
-                        int b = Convert.ToInt32(3);
+                TextBlock tb = (TextBlock)sender;
 
-                        if (a % b == 0)
+                switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+                {
+                    case "prev":
+                        sp.CurrentPage--;
+                        break;
+                    case "next":
+                        sp.CurrentPage++;
+                        break;
+                    case "prev1":
+                        sp.CurrentPage = 1;
+                        break;
+                    case "next1":
                         {
-                            sp.CurrentPage = a / b;
-                        }
-                        else
-                        {
-                            sp.CurrentPage = a / b + 1;
-                        }
+                            List<Service> fl = Entities1.GetContext().Service.ToList();
+                            int a = fl.Count;
+                            int b = Convert.ToInt32(3);
 
-                    }
-                    break;
-                default:
-                    sp.CurrentPage = Convert.ToInt32(tb.Text);
-                    break;
+                            if (a % b == 0)
+                            {
+                                sp.CurrentPage = a / b;
+                            }
+                            else
+                            {
+                                sp.CurrentPage = a / b + 1;
+                            }
+
+                        }
+                        break;
+                    default:
+                        sp.CurrentPage = Convert.ToInt32(tb.Text);
+                        break;
+                }
+                LViewTours.ItemsSource = services.Skip(sp.CurrentPage * sp.CountPage - sp.CountPage).Take(sp.CountPage).ToList();
             }
-            LViewTours.ItemsSource = services.Skip(sp.CurrentPage * sp.CountPage - sp.CountPage).Take(sp.CountPage).ToList();
+
+            else
+            {
+                TextBlock tb = (TextBlock)sender;
+
+                switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+                {
+                    case "prev":
+                        sp.CurrentPage--;
+                        break;
+                    case "next":
+                        sp.CurrentPage++;
+                        break;
+                    case "prev1":
+                        sp.CurrentPage = 1;
+                        break;
+                    case "next1":
+                        {
+                            List<Results> fl = Entities1.GetContext().Results.ToList();
+                            int a = fl.Count;
+                            int b = Convert.ToInt32(3);
+
+                            if (a % b == 0)
+                            {
+                                sp.CurrentPage = a / b;
+                            }
+                            else
+                            {
+                                sp.CurrentPage = a / b + 1;
+                            }
+
+                        }
+                        break;
+                    default:
+                        sp.CurrentPage = Convert.ToInt32(tb.Text);
+                        break;
+                }
+                LViewresult.ItemsSource = result.Skip(sp.CurrentPage * sp.CountPage - sp.CountPage).Take(sp.CountPage).ToList();
+            }
+
         }
+
+
         public int TickCounter
         {
             get { return (int)GetValue(TickCounterProperty); }
@@ -197,7 +255,87 @@ namespace Practice.Straniza
         private void analiz_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LViewTours.Visibility = Visibility.Hidden;
-            stack.Visibility = Visibility.Hidden;
+            analiz.Visibility = Visibility.Collapsed;
+            LViewresult.Visibility = Visibility.Visible;
+            Servis.Visibility = Visibility.Visible;
+            result = Entities1.GetContext().Results.ToList();
+            List<users> use = new List<users>();
+            TBoxSearch.Text = "";
+            result = Entities1.GetContext().Results.ToList();
+            use = Entities1.GetContext().users.ToList();
+            int counts1 = Entities1.GetContext().Results.Count();
+            if (rol == 2)
+            {
+                for (int i = 0; i < counts1; i++)
+                {
+                    if (result[i].Workers.login != user)
+                    {
+                        result.RemoveAt(i);
+                        i--;
+                        counts1--;
+                    }
+                }
+            }
+            if (rol == 0)
+            {
+                for (int i = 0; i < counts1; i++)
+                {
+                    if (result[i].users.login != user)
+                    {
+                        result.RemoveAt(i);
+                        i--;
+                        counts1--;
+                    }
+                }
+            }
+            stack.UpdateLayout();
+            Update();
+            sp.CountPage = 3;
+            sp.Countlist = counts1;
+            LViewresult.ItemsSource = result.Skip(0).Take(sp.CountPage).ToList();
+        }
+
+        private void Servis_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LViewTours.Visibility = Visibility.Visible;
+            analiz.Visibility = Visibility.Visible;
+            LViewresult.Visibility = Visibility.Hidden;
+            TBoxSearch.Text = "";
+            Update();
+            Servis.Visibility = Visibility.Collapsed;
+        }
+
+        private void Add_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LViewTours.Visibility == Visibility.Visible)
+            {
+                frame1.Navigate(new add_service(user, frame1));
+            }
+
+            else
+            {
+                frame1.Navigate(new add_rezult(user, frame1));
+            }
+        }
+
+        private async void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (rol != 0)
+            {
+                await Task.Delay(100);
+                object itemm = LViewTours.SelectedItem;
+                frame1.Navigate(new upd_service(user, frame1, itemm));
+            }
+        }
+
+        private async void Grid_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (rol != 0)
+            {
+                await Task.Delay(100);
+                object itemm = LViewresult.SelectedItem;
+                frame1.Navigate(new upd_rezult(user, frame1, itemm));
+            }
         }
     }
 }
