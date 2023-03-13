@@ -31,15 +31,16 @@ namespace Practice.Straniza
 
     public static readonly DependencyProperty TickCounterProperty = DependencyProperty.Register(
         "TickCounter", typeof(int), typeof(Glavn), new PropertyMetadata(default(int)));
-    Frame frame1;
-    string user;
-    List<Practice.Base.history> historys = new List<Practice.Base.history>();
-    List<Practice.Base.Service> services = new List<Practice.Base.Service>();
-    List<Practice.Base.Results> result = new List<Practice.Base.Results>();
-    List<Practice.Base.Workers> workers = new List<Practice.Base.Workers>();
+        Frame frame1;
+        string user;
+        List<history> historys = new List<history>();
+        List<Workers> workers = new List<Workers>();
+        List<Service> services = new List<Service>();
+        List<Results> result = new List<Results>();
+        List<string> filtr = new List<string>() { "Фильтрация", "До 500 руб.", "от 500 до 1000 руб.", "Больше 1000 руб." };
         public int rol = 0;
         public Glavn(string User, Frame frame)
-    {
+        {
             InitializeComponent();
             frame1 = frame;
             user = User;
@@ -47,6 +48,24 @@ namespace Practice.Straniza
             Servis.Visibility = Visibility.Collapsed;
             Add.Visibility = Visibility.Collapsed;
             history.Visibility = Visibility.Collapsed;
+            Type1.Visibility = Visibility.Collapsed;
+            Type2.Visibility = Visibility.Collapsed;
+            Type.ItemsSource = filtr;
+            Type.SelectedIndex = 0;
+            var all1 = Entities1.GetContext().Workers.ToList();
+            all1.Insert(0, new Workers
+            {
+                name = "Лаборант"
+            });
+            Type1.ItemsSource = all1;
+            Type1.SelectedIndex = 0;
+            var all2 = Entities1.GetContext().users.ToList();
+            all2.Insert(0, new users
+            {
+                name = "Пациент"
+            });
+            Type2.ItemsSource = all2;
+            Type2.SelectedIndex = 0;
             workers = Entities1.GetContext().Workers.ToList();
             for (int i = 0; i < workers.Count; i++)
             {
@@ -94,24 +113,66 @@ namespace Practice.Straniza
         {
             Update();
         }
+        private async void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            await Task.Delay(100);
+            Update();
+        }
         Strelki sp = new Strelki();
         private void Update()
         {
             var currentProducts = Entities1.GetContext().Service.ToList();
             currentProducts = currentProducts.Where(p => p.Service1.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
-            sp.CountPage = 3;
-            sp.Countlist = currentProducts.Count;
-            LViewTours.ItemsSource = currentProducts.Skip(0).Take(sp.CountPage).ToList();
-            var currentResult = Entities1.GetContext().Results.ToList();
-
-            for (int i = 0; i < currentResult.Count; i++)
+            for (int i = 0; i < currentProducts.Count; i++)
             {
-                if (currentResult[i].Workers.login != user && currentResult[i].users.login != user)
+                if (Type.SelectedIndex != 0)
                 {
-                    currentResult.RemoveAt(i);
-                    i--;
+                    if (Type.SelectedIndex == 1)
+                    {
+                        if (currentProducts[i].Price >= 500)
+                        {
+                            currentProducts.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                    if (Type.SelectedIndex == 2)
+                    {
+                        if (currentProducts[i].Price < 500 || currentProducts[i].Price >= 1000)
+                        {
+                            currentProducts.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                    if (Type.SelectedIndex == 3)
+                    {
+                        if (currentProducts[i].Price < 1000)
+                        {
+                            currentProducts.RemoveAt(i);
+                            i--;
+                        }
+                    }
                 }
             }
+            if (LViewTours.Visibility == Visibility.Visible)
+            {
+                sp.CountPage = 3;
+                sp.Countlist = currentProducts.Count;
+            }
+            services = currentProducts.ToList();
+            LViewTours.ItemsSource = currentProducts.Skip(0).Take(sp.CountPage).ToList();
+            var currentResult = Entities1.GetContext().Results.ToList();
+            if (rol != 1)
+            {
+                for (int i = 0; i < currentResult.Count; i++)
+                {
+                    if (currentResult[i].Workers.login != user && currentResult[i].users.login != user)
+                    {
+                        currentResult.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+
             if (rol != 2)
             {
                 currentResult = currentResult.Where(p => p.Workers.name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
@@ -120,6 +181,40 @@ namespace Practice.Straniza
             {
                 currentResult = currentResult.Where(p => p.users.name.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             }
+            if (rol == 2)
+            {
+                for (int i = 0; i < currentResult.Count; i++)
+                {
+                    if (Type2.SelectedIndex != 0)
+                    {
+                        if (Type2.Text != currentResult[i].users.name)
+                        {
+                            currentResult.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+            if (rol == 0 || rol == 1)
+            {
+                for (int i = 0; i < currentResult.Count; i++)
+                {
+                    if (Type1.SelectedIndex != 0)
+                    {
+                        if (Type1.Text != currentResult[i].Workers.name)
+                        {
+                            currentResult.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                }
+            }
+            if (LViewresult.Visibility == Visibility.Visible)
+            {
+                sp.CountPage = 3;
+                sp.Countlist = currentResult.Count;
+            }
+            result = currentResult.ToList();
             LViewresult.ItemsSource = currentResult.ToList();
         }
 
@@ -144,7 +239,7 @@ namespace Practice.Straniza
                         break;
                     case "next1":
                         {
-                            List<Service> fl = Entities1.GetContext().Service.ToList();
+                            List<Service> fl = services;
                             int a = fl.Count;
                             int b = Convert.ToInt32(3);
 
@@ -183,7 +278,7 @@ namespace Practice.Straniza
                         break;
                     case "next1":
                         {
-                            List<Results> fl = Entities1.GetContext().Results.ToList();
+                            List<Results> fl = result;
                             int a = fl.Count;
                             int b = Convert.ToInt32(3);
 
@@ -256,6 +351,7 @@ namespace Practice.Straniza
         {
             LViewTours.Visibility = Visibility.Hidden;
             analiz.Visibility = Visibility.Collapsed;
+            Type.Visibility = Visibility.Collapsed;
             LViewresult.Visibility = Visibility.Visible;
             Servis.Visibility = Visibility.Visible;
             result = Entities1.GetContext().Results.ToList();
@@ -275,6 +371,13 @@ namespace Practice.Straniza
                         counts1--;
                     }
                 }
+                Type.SelectedIndex = 0;
+                Type2.Visibility = Visibility.Visible;
+            }
+            if (rol == 1)
+            {
+                Type.SelectedIndex = 0;
+                Type1.Visibility = Visibility.Visible;
             }
             if (rol == 0)
             {
@@ -287,6 +390,8 @@ namespace Practice.Straniza
                         counts1--;
                     }
                 }
+                Type.SelectedIndex = 0;
+                Type1.Visibility = Visibility.Visible;
             }
             stack.UpdateLayout();
             Update();
@@ -299,6 +404,11 @@ namespace Practice.Straniza
         {
             LViewTours.Visibility = Visibility.Visible;
             analiz.Visibility = Visibility.Visible;
+            Type.Visibility = Visibility.Visible;
+            Type2.Visibility = Visibility.Collapsed;
+            Type1.SelectedIndex = 0;
+            Type2.SelectedIndex = 0;
+            Type1.Visibility = Visibility.Collapsed;
             LViewresult.Visibility = Visibility.Hidden;
             TBoxSearch.Text = "";
             Update();
