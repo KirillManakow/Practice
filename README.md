@@ -27,7 +27,7 @@
 После авторизации нас встречает главная страница выглядящая следующим образом.
 ![image](https://user-images.githubusercontent.com/105341960/223931319-f108cf20-fbef-4cc4-8b05-e338f0d4e804.png)
 
-#День 3
+# День 3
 Следующими шагами в разработке приложения стали окна добавления редактирования и удаления данных, с подстановкой данных из базы. Пример:
 ![image](https://user-images.githubusercontent.com/105341960/224657971-b91c7e30-8daa-46b3-bc0b-418a8d4c534f.png)
 ![image](https://user-images.githubusercontent.com/105341960/224658009-c94ad355-fd94-4014-af79-e6301e3e6fa9.png)
