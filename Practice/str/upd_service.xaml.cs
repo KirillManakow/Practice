@@ -57,7 +57,7 @@ namespace Practice.str
                             services[i].Service1 = Service_Upd.Text;
                             services[i].Price = Convert.ToDouble(Price_upd.Text);
                             Entities1.GetContext().SaveChanges();
-                            frame1.Navigate(new Glavn(user, frame1));
+                            frame1.Navigate(new Glavn(user, frame1, 1));
                         }
                     }
                 }
@@ -76,14 +76,14 @@ namespace Practice.str
                 {
                     Entities1.GetContext().Service.Remove(services[i]);
                     Entities1.GetContext().SaveChanges();
-                    frame1.Navigate(new Glavn(user, frame1));
+                    frame1.Navigate(new Glavn(user, frame1, 1));
                 }
             }
         }
 
         private void back_udp_service(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Glavn(user, frame1));
+            frame1.Navigate(new Glavn(user, frame1, 1));
         }
     }
 }

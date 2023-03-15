@@ -78,7 +78,7 @@ namespace Practice.Straniza
                                     }
                                     Base.Entities1.GetContext().history.Add(history_login[0]);
                                     Base.Entities1.GetContext().SaveChanges();
-                                    frame1.Navigate(new Glavn(worker[i].login, frame1));
+                                    frame1.Navigate(new Glavn(worker[i].login, frame1,1));
                                     break;
                                 }
                                 else
@@ -126,7 +126,7 @@ namespace Practice.Straniza
                                     }
                                     Base.Entities1.GetContext().history.Add(history_login[0]);
                                     Base.Entities1.GetContext().SaveChanges();
-                                    frame1.Navigate(new Glavn(Users[i].login, frame1));
+                                    frame1.Navigate(new Glavn(Users[i].login, frame1, 1));
                                     break;
                                 }
                                 else

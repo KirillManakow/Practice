@@ -19,7 +19,6 @@ namespace Practice.Base
         public Entities1()
             : base("name=Entities1")
         {
-
         }
         public static Entities1 GetContext()
         {

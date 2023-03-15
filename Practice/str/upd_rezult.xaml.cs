@@ -83,7 +83,7 @@ namespace Practice.str
                             results[i].result = Result_Upd.Text;
                             results[i].date = Convert.ToDateTime(Date_Upd.Text);
                             Entities1.GetContext().SaveChanges();
-                            frame1.Navigate(new Glavn(user, frame1));
+                            frame1.Navigate(new Glavn(user, frame1, 1));
                         }
                     }
 
@@ -103,14 +103,14 @@ namespace Practice.str
                 {
                     Entities1.GetContext().Results.Remove(results[i]);
                     Entities1.GetContext().SaveChanges();
-                    frame1.Navigate(new Glavn(user, frame1));
+                    frame1.Navigate(new Glavn(user, frame1, 1));
                 }
             }
         }
 
         private void back_upd_rezult(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Glavn(user, frame1));
+            frame1.Navigate(new Glavn(user, frame1, 1));
         }
     }
 }

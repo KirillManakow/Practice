@@ -66,7 +66,7 @@ namespace Practice.str
                     results[0].date = Convert.ToDateTime(Date_Add.Text);
                     Entities1.GetContext().Results.Add(results[0]);
                     Entities1.GetContext().SaveChanges();
-                    frame1.Navigate(new Glavn(user, frame1));
+                    frame1.Navigate(new Glavn(user, frame1,1));
                 }
                 catch(Exception)
                 {
@@ -79,7 +79,7 @@ namespace Practice.str
 
         private void back_rezult(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Glavn(user, frame1));
+            frame1.Navigate(new Glavn(user, frame1,1));
         }
     }
 }

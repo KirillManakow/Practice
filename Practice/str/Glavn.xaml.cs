@@ -17,6 +17,7 @@ using Practice.Base;
 using Practice;
 using Practice.Straniza;
 using Practice.str;
+using Aspose.BarCode.Generation;
 
 namespace Practice.Straniza
 {
@@ -26,21 +27,48 @@ namespace Practice.Straniza
     public partial class Glavn : Page
     {
 
-  
-    private DispatcherTimer _timer;
 
-    public static readonly DependencyProperty TickCounterProperty = DependencyProperty.Register(
-        "TickCounter", typeof(int), typeof(Glavn), new PropertyMetadata(default(int)));
+        private DispatcherTimer _timer;
+
+        public static readonly DependencyProperty TickCounterProperty = DependencyProperty.Register(
+            "TickCounter", typeof(int), typeof(Glavn), new PropertyMetadata(default(int)));
         Frame frame1;
         string user;
         List<history> historys = new List<history>();
         List<Workers> workers = new List<Workers>();
         List<Service> services = new List<Service>();
         List<Results> result = new List<Results>();
+        List<Service> services1 = new List<Service>();
+        string imagePath;
+        string path;
         List<string> filtr = new List<string>() { "Фильтрация", "До 500 руб.", "от 500 до 1000 руб.", "Больше 1000 руб." };
         public int rol = 0;
-        public Glavn(string User, Frame frame)
+        public int ss = 1;
+        public Glavn(string User, Frame frame, int sh)
         {
+            services1 = Entities1.GetContext().Service.ToList();
+            ss = sh;
+
+            for (int i = 0; i < services1.Count; i++)
+            {
+                try
+                {
+                    BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.Code128, Convert.ToString(services1[i].id));
+                    var imageType = "Png";
+                    // установить разрешение
+                    generator.Parameters.Resolution = 400;
+                    imagePath = "barcode" + (services1[i].id) + ".Png";
+                    path = System.IO.Path.GetFullPath(imagePath);
+                    // сгенерировать штрих-код          
+                    generator.Save(imagePath, BarCodeImageFormat.Png);
+                    services1[i].barcode = path;
+                    Entities1.GetContext().SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
             InitializeComponent();
             frame1 = frame;
             user = User;
@@ -104,10 +132,9 @@ namespace Practice.Straniza
             _timer.Tick += new EventHandler(Timer_Tick);
             _timer.Start();
             int count = Entities1.GetContext().Service.Count();
-            services = Entities1.GetContext().Service.ToList();
             sp.CountPage = 3;
             sp.Countlist = count;
-            LViewTours.ItemsSource = services.Skip(0).Take(sp.CountPage).ToList();
+            LViewTours.ItemsSource = services1.Skip(0).Take(sp.CountPage).ToList();
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -121,6 +148,13 @@ namespace Practice.Straniza
         Strelki sp = new Strelki();
         private void Update()
         {
+            for (int i = 0; i < services1.Count; i++)
+            {
+                imagePath = "barcode" + services1[i].id + ".Png";
+                string path = System.IO.Path.GetFullPath(imagePath);
+                services1[i].barcode = path;
+                Entities1.GetContext().SaveChanges();
+            }
             var currentProducts = Entities1.GetContext().Service.ToList();
             currentProducts = currentProducts.Where(p => p.Service1.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
             for (int i = 0; i < currentProducts.Count; i++)
@@ -217,7 +251,6 @@ namespace Practice.Straniza
             result = currentResult.ToList();
             LViewresult.ItemsSource = currentResult.ToList();
         }
-
 
 
         private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
@@ -447,6 +480,36 @@ namespace Practice.Straniza
                 frame1.Navigate(new upd_rezult(user, frame1, itemm));
             }
         }
+
+        private void LViewTours_MouseEnter(object sender, MouseEventArgs e)
+        {
+            services = Entities1.GetContext().Service.ToList();
+
+            for (int i = 0; i < services.Count; i++)
+            {
+                try
+                {
+                    BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.Code128, Convert.ToString(services[i].id));
+                    var imageType = "Png";
+                    // установить разрешение
+                    generator.Parameters.Resolution = 400;
+                    imagePath = "barcode" + (services[i].id) + ".Png";
+                    path = System.IO.Path.GetFullPath(imagePath);
+                    // сгенерировать штрих-код          
+                    generator.Save(imagePath, BarCodeImageFormat.Png);
+                    services[i].barcode = path;
+                    Entities1.GetContext().SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            sp.Countlist = services.Count;
+            LViewTours.ItemsSource = services.Skip(sp.CurrentPage * sp.CountPage - sp.CountPage).Take(sp.CountPage).ToList();
+        }
+
+       
     }
 }
 

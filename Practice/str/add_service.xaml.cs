@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aspose.BarCode.Generation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Practice;
 using Practice.Base;
+using Practice.str;
 using Practice.Straniza;
 
 namespace Practice.str
@@ -33,18 +35,32 @@ namespace Practice.str
             user = User;
         }
 
-        private void AddS_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void AddS_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (ServiceA.Text != "" && PriceA.Text != "")
             {
                 try
                 {
                     List<Service> services = new List<Service> { new Service() };
+                    List<Service> services1 = new List<Service> { new Service() };
+                    services1 = Entities1.GetContext().Service.ToList();
                     services[0].Service1 = ServiceA.Text;
                     services[0].Price = Convert.ToDouble(PriceA.Text);
                     Entities1.GetContext().Service.Add(services[0]);
                     Entities1.GetContext().SaveChanges();
-                    frame1.Navigate(new Glavn(user, frame1));
+                    await Task.Delay(500);
+                    services1 = Entities1.GetContext().Service.ToList();
+                    BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.Code128, Convert.ToString(services1.Last().id + 1));
+                    var imageType = "Png";
+                    // установить разрешение
+                    generator.Parameters.Resolution = 400;
+                    string imagePath = "barcode" + (services1.Last().id) + ".Png";
+                    string path = System.IO.Path.GetFullPath(imagePath);
+                    // сгенерировать штрих-код          
+                    generator.Save(imagePath, BarCodeImageFormat.Png);
+                    services1.Last().barcode = path;
+                    Entities1.GetContext().SaveChanges();
+                    frame1.Navigate(new Glavn(user, frame1, 1));
                 }
                 catch (Exception)
                 {
@@ -53,11 +69,10 @@ namespace Practice.str
             }
         }
 
-     
-
+      
         private void back_service(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Glavn(user, frame1));
+            frame1.Navigate(new Glavn(user, frame1, 1));
         }
     }
 }

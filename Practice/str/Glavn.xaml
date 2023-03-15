@@ -104,7 +104,7 @@ x:Name="LViewTours"
 ItemsSource="{Binding Service}"
 Margin="0,32,0,86"
 Visibility="Visible"
-Cursor="Hand" >
+Cursor="Hand" MouseEnter="LViewTours_MouseEnter" >
 
 
                 <ListView.ItemContainerStyle>
@@ -137,7 +137,8 @@ HorizontalAlignment="Stretch" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                                 <StackPanel Grid.Column="1"
 Margin="15"
 Orientation="Horizontal">
-                                    <Image Source="/Image/zagl.jpg"
+                                    <Image 
+                                           Source="{Binding barcode}"
 Height="100" Width="160"
 HorizontalAlignment="Left"/>
                                     <StackPanel Grid.Column="1"
