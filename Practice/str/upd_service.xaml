@@ -199,6 +199,7 @@
             FontSize="50" Margin="665,414,0,0" 
             FontFamily="Bahnschrift" 
             Cursor="Hand" MouseLeftButtonDown="DeleteS_MouseLeftButtonDown" Height="66" VerticalAlignment="Top"/>
+        
         <TextBlock x:Name="back_upd_service"
             Text="Назад" 
             TextDecorations="Underline" 

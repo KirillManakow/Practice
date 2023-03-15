@@ -52,6 +52,7 @@ namespace Practice.str
             Service_ADD.ItemsSource = allS;
             Service_ADD.SelectedIndex = 0;
         }
+
         private void AddR_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Patient_ADD.SelectedIndex != 0 && Laborant_ADD.SelectedIndex != 0 && Service_ADD.SelectedIndex != 0 && Result_ADD.Text != "" && Date_Add.Text != null)
@@ -59,6 +60,7 @@ namespace Practice.str
                 try
                 {
                     List<Results> results = new List<Results> { new Results() };
+                    
                     results[0].id_user = Patient_ADD.SelectedIndex;
                     results[0].id_work = Laborant_ADD.SelectedIndex;
                     results[0].id_service = Service_ADD.SelectedIndex;
@@ -66,16 +68,16 @@ namespace Practice.str
                     results[0].date = Convert.ToDateTime(Date_Add.Text);
                     Entities1.GetContext().Results.Add(results[0]);
                     Entities1.GetContext().SaveChanges();
-                    frame1.Navigate(new Glavn(user, frame1,1));
+                    frame1.Navigate(new Glavn(user, frame1, 1));
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     MessageBox.Show("Проверьте формат введенных данных");
                 }
             }
         }
 
-    
+
 
         private void back_rezult(object sender, MouseButtonEventArgs e)
         {

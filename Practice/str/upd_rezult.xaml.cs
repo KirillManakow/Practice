@@ -24,10 +24,11 @@ namespace Practice.str
     public partial class upd_rezult : Page
     {
         Frame frame1;
-        string user;
+        string user;      
         object item;
         List<Results> results = new List<Results> { };
         List<Results> r = new List<Results> { new Results() };
+
         public upd_rezult(string User, Frame frame, object itemm)
         {
             InitializeComponent();
@@ -111,6 +112,11 @@ namespace Practice.str
         private void back_upd_rezult(object sender, MouseButtonEventArgs e)
         {
             frame1.Navigate(new Glavn(user, frame1, 1));
+        }
+
+        private void print(object sender, MouseButtonEventArgs e)
+        {
+            frame1.Navigate(new Print(user, frame1, results,item));
         }
     }
 }
