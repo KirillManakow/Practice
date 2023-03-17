@@ -116,7 +116,7 @@ namespace Practice.str
 
         private void print(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Print(user, frame1, results,item));
+            frame1.Navigate(new Print(user, frame1,item,r));
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Practice.Base
     
     public partial class Entities1 : DbContext
     {
+    
         private static Entities1 _instance;
         public Entities1()
             : base("name=Entities1")

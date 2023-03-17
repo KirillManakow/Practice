@@ -26,22 +26,34 @@ namespace Practice.str
         Frame frame1;
         string user;
         object item;
-        public List<Results> results = new List<Results> { };
-        List<Results> r = new List<Results> { new Results() };
-        public Print(string User, Frame frame, List<Results> resultat, object itemm)
+        List<Results> results = new List<Results> { };
+        public List<Results> r = new List<Results> { new Results() };
+
+        public Print(string User, Frame frame, object itemm, List<Results> r)
         {
-            InitializeComponent();
+            InitializeComponent();          
             frame1 = frame;
             user = User;
             item = itemm;
-            results = resultat;
-            //patient_pr.Text = results[0].users.name;
-            //Laborant_pr.Text = results[0].Workers.name;
-            //Service_pr.Text =results[0].Service.Service1;          
-            //price_pr.Text = results[0].Service.Price.ToString();
-            //Rezult_pr.Text = results[0].result;
-            //Date_pr.Text = results[0].date.ToString();
-
+            results = Entities1.GetContext().Results.ToList();
+            var allP = Entities1.GetContext().users.ToList();
+            allP.Insert(0, new users
+            {
+                name = "Пациент"
+            });
+            patient_pr.ItemsSource = allP;
+            var allL = Entities1.GetContext().Workers.ToList();
+            allL.Insert(0, new Workers
+            {
+                name = "Лаборант"
+            });
+            Laborant_pr.ItemsSource = allL;
+            var allS = Entities1.GetContext().Service.ToList();
+            allS.Insert(0, new Service
+            {
+                Service1 = "Услуга"
+            });
+            Service_pr.ItemsSource = allS;
             r[0] = (Results)item;
             for (int i = 0; i < results.Count; i++)
             {
@@ -50,13 +62,10 @@ namespace Practice.str
                     patient_pr.SelectedIndex = results[i].id_user;
                     Laborant_pr.SelectedIndex = (int)results[i].id_work;
                     Service_pr.SelectedIndex = (int)results[i].id_service;
-                  
                     Rezult_pr.Text = results[i].result;
                     Date_pr.Text = Convert.ToString(results[i].date);
                 }
             }
-
-
         }
 
         private void Back(object sender, MouseButtonEventArgs e)

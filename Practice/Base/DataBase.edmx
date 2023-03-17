@@ -54,7 +54,6 @@
           <Property Name="login" Type="nvarchar(max)" />
           <Property Name="password" Type="nvarchar(max)" />
           <Property Name="ip" Type="nvarchar(max)" />
-          <Property Name="lastenter" Type="date" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -182,7 +181,6 @@
           <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="lastenter" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Results" Relationship="Self.FK_Results_users" FromRole="users" ToRole="Results" />
         </EntityType>
         <EntityType Name="Workers">
@@ -313,7 +311,6 @@
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="ip" ColumnName="ip" />
-                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
