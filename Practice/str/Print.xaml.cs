@@ -1,7 +1,4 @@
-﻿using Practice.Straniza;
-using Practice.Base;
-using Practice.Straniza;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,70 +10,40 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Practice;
+using Practice.Base;
+using Practice.Straniza;
 
-namespace Practice.str
+namespace Practice
 {
     /// <summary>
     /// Логика взаимодействия для Print.xaml
     /// </summary>
-    public partial class Print : Page
+    public partial class Print : Window
     {
-        Frame frame1;
-        string user;
         object item;
-        List<Results> results = new List<Results> { };
-        public List<Results> r = new List<Results> { new Results() };
-
-        public Print(string User, Frame frame, object itemm, List<Results> r)
+        public Print(object Item)
         {
-            InitializeComponent();          
-            frame1 = frame;
-            user = User;
-            item = itemm;
-            results = Entities1.GetContext().Results.ToList();
-            var allP = Entities1.GetContext().users.ToList();
-            allP.Insert(0, new users
-            {
-                name = "Пациент"
-            });
-            patient_pr.ItemsSource = allP;
-            var allL = Entities1.GetContext().Workers.ToList();
-            allL.Insert(0, new Workers
-            {
-                name = "Лаборант"
-            });
-            Laborant_pr.ItemsSource = allL;
-            var allS = Entities1.GetContext().Service.ToList();
-            allS.Insert(0, new Service
-            {
-                Service1 = "Услуга"
-            });
-            Service_pr.ItemsSource = allS;
-            r[0] = (Results)item;
-            for (int i = 0; i < results.Count; i++)
-            {
-                if (results[i].id == r[0].id)
-                {
-                    patient_pr.SelectedIndex = results[i].id_user;
-                    Laborant_pr.SelectedIndex = (int)results[i].id_work;
-                    Service_pr.SelectedIndex = (int)results[i].id_service;
-                    Rezult_pr.Text = results[i].result;
-                    Date_pr.Text = Convert.ToString(results[i].date);
-                }
-            }
+            InitializeComponent();
+            item = Item;
+            List<Results> results = new List<Results> { new Results() };
+            results[0] = (Results)item;
+            IdPrint.Text = Convert.ToString(results[0].id);
+            Patient.Text = results[0].users.name;
+            DatePrint.Text = Convert.ToString(results[0].date);
+            NamePrint.Text = results[0].Service.Service1;
+            PricePrint.Text = Convert.ToString(results[0].Service.Price);
+            PricePrint_Copy.Text = Convert.ToString(results[0].Service.Price);
+            PricePrint_Copy1.Text = Convert.ToString(results[0].Service.Price);
+            PricePrint_Copy2.Text = Convert.ToString(results[0].Service.Price);
+            PricePrint_Copy3.Text = Convert.ToString(results[0].Service.Price);
         }
 
-        private void Back(object sender, MouseButtonEventArgs e)
+        private void Print_Otpr_Click(object sender, RoutedEventArgs e)
         {
-            frame1.Navigate(new Glavn(user, frame1,1));
-        }
-      
-        private void prints_Click(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Билет отправлен на печать");
-            frame1.Navigate(new Glavn(user, frame1,1));
+            MessageBox.Show("Отправлено на печать");
+            Close();
         }
     }
 }

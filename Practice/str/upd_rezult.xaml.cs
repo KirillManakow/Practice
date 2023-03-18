@@ -114,10 +114,12 @@ namespace Practice.str
             frame1.Navigate(new Glavn(user, frame1, 1));
         }
 
-        private void print(object sender, MouseButtonEventArgs e)
+        private void Print_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            frame1.Navigate(new Print(user, frame1,item,r));
+            Print print = new Print(item);
+            print.Show();
         }
+
     }
 }
 

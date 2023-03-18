@@ -102,6 +102,18 @@
 
 
     <Grid>
+        <TextBlock x:Name="Prints"
+            Text="Печать" 
+            TextDecorations="Underline" 
+            TextAlignment="Center"
+            TextWrapping="WrapWithOverflow"
+            HorizontalAlignment="Left"
+            Width="144"
+            FontWeight="Bold" 
+            Foreground="White"
+            FontSize="35" Margin="565,517,0,0" 
+            FontFamily="Comic Sans MS" 
+            Cursor="Hand"  Height="44" VerticalAlignment="Top" MouseLeftButtonDown="Print_MouseLeftButtonDown"/>
         <Label Content="Пациент:" 
                FontSize="40"
                Height="60"
@@ -192,18 +204,6 @@
             FontSize="35" Margin="1050,10,0,0" 
             FontFamily="Bahnschrift" 
             Cursor="Hand" MouseLeftButtonDown="back_upd_rezult" Height="39" VerticalAlignment="Top"/>
-        <TextBlock x:Name="Update_R_Copy"
-            Text="Напечатать" 
-            TextDecorations="Underline" 
-            TextAlignment="Center"
-            TextWrapping="WrapWithOverflow"
-            HorizontalAlignment="Left"
-            Width="161"
-            FontWeight="Bold" 
-            Foreground="White"
-            FontSize="24" Margin="550,521,0,0" 
-            FontFamily="Bahnschrift" 
-            Cursor="Hand" MouseLeftButtonDown="print" Height="26" VerticalAlignment="Top"/>
     </Grid>
 
 </Page>
