@@ -98,7 +98,9 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
+ 
 
+    
     <Grid Width="1200" Height="700">
 
         <TextBox Style="{DynamicResource ResourceKey=TextBoxStyle1}"
@@ -160,10 +162,10 @@
                    TextAlignment="Center"
                    TextWrapping="WrapWithOverflow"
                    HorizontalAlignment="Left"
-                   Width="440"
+                   Width="488"
                    Foreground="White"
-                   FontSize="28" Margin="382,507,0,163" 
-                   FontFamily="Bahnschrift"/>
+                   FontSize="28" Margin="360,502,0,159" 
+                   FontFamily="Monotype Corsiva"/>
 
         <TextBlock x:Name="Reg"
                    Text="Зарегистрироваться"
@@ -174,7 +176,7 @@
                    Width="256"
                    FontWeight="Bold" 
                    Foreground="White"
-                   FontSize="30" Margin="0,546,0,120" 
+                   FontSize="30" Margin="469,535,475,131" 
                    FontFamily="Monotype Corsiva" MouseLeftButtonDown="Enter"
                    Cursor="Hand"/>
 
@@ -210,7 +212,7 @@
                    FontWeight="Bold" 
                    Foreground="White"
                    FontSize="50" Margin="0,387,0,247" 
-                   FontFamily="Bahnschrift"
+                   FontFamily="Monotype Corsiva"
                    Cursor="Hand" MouseLeftButtonDown="Entre_MouseLeftButtonDown"
                    />
         <Image x:Name="glas" HorizontalAlignment="Left" Height="42" Margin="756,299,0,0" VerticalAlignment="Top" Width="66" Source="/str/show_pass.png" Stretch="Fill" MouseLeftButtonDown="glas_MouseLeftButtonDown"/>

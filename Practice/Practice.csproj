@@ -69,6 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BarChart.cs" />
+    <Compile Include="Chart.cs" />
+    <Compile Include="LineChart.cs" />
+    <Compile Include="PieChart.cs" />
     <Compile Include="Strelki.cs" />
     <Compile Include="str\add_rezult.xaml.cs">
       <DependentUpon>add_rezult.xaml</DependentUpon>
@@ -108,6 +112,9 @@
     </Compile>
     <Compile Include="str\Avtorizacia.xaml.cs">
       <DependentUpon>Avtorizacia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="str\Diagram.xaml.cs">
+      <DependentUpon>Diagram.xaml</DependentUpon>
     </Compile>
     <Compile Include="str\glavn.xaml.cs">
       <DependentUpon>glavn.xaml</DependentUpon>
@@ -159,6 +166,10 @@
     <Page Include="str\Avtorizacia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="str\Diagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="str\glavn.xaml">
       <Generator>MSBuild:Compile</Generator>
