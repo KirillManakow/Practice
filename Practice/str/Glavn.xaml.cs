@@ -78,6 +78,7 @@ namespace Practice.Straniza
             history.Visibility = Visibility.Collapsed;
             Type1.Visibility = Visibility.Collapsed;
             Type2.Visibility = Visibility.Collapsed;
+            Grapf.Visibility = Visibility.Collapsed;
             Type.ItemsSource = filtr;
             Type.SelectedIndex = 0;
             var all1 = Entities1.GetContext().Workers.ToList();
@@ -101,6 +102,7 @@ namespace Practice.Straniza
                 {
                     history.Visibility = Visibility.Visible;
                     Add.Visibility = Visibility.Visible;
+                    Grapf.Visibility = Visibility.Visible;
                     rol = 1;
                 }
                 if (workers[i].login == user && workers[i].dolgnost == "Лаборант")
@@ -514,6 +516,10 @@ namespace Practice.Straniza
             diagram.Show();
         }
 
+        private void BACK_AVT(object sender, MouseButtonEventArgs e)
+        {
+            frame1.Navigate(new Avtorizacia(frame1));
+        }
     }
 }
 

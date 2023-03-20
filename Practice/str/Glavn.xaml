@@ -106,7 +106,7 @@
                            FontWeight="Bold" 
                            TextDecorations="Underline"
                            Foreground="White" 
-                           Cursor="Hand" />
+                           Cursor="Hand" MouseLeftButtonDown="BACK_AVT" />
                 </StackPanel>
             </WrapPanel>
             <ListView Grid.Row="1"

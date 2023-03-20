@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Practice"
         mc:Ignorable="d"
         Title="Print" Height="700" Width="1200" Background="#FFC6D7FF">
-    <Grid>
+    <Grid x:Name="Printgrid">
         <Image HorizontalAlignment="Center" Height="565" VerticalAlignment="Top" Width="1200" Source="/str/print.jpg"/>
 
         <TextBox x:Name="NamePrint" FontSize="20" HorizontalAlignment="Left" Margin="304,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" Height="48" BorderBrush="{x:Null}" IsEnabled="False"/>
